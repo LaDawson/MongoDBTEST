@@ -1,0 +1,41 @@
+new_doc = {'first': 'douglas',
+            'last': 'adams',
+            'dob': '11/03/1952',
+            'hair_colour': 'grey', 
+            'occupation': 'writer',
+            'nationality':'english' }
+
+coll.insert(new_doc)
+
+ - This would insert a new record with the information above into the database.
+
+ new_docs = [{'first': 'terry', 'last': 'pratchett', 'dob': '28/04/1948',
+             'gender': 'm', 'hair_colour': 'bald',
+             'occupation': 'writer', 'nationality': 'english'},
+            {'first': 'george', 'last': 'rr martin', 'dob': '20/09/1948',
+             'gender': 'm', 'hair_colour': 'white',
+             'occupation': 'writer', 'nationality': 'american'}]
+
+coll.insert_many(new_docs)
+
+- This would insert multiple records into the database.
+
+documents = coll.find({'first': 'douglas'})
+for doc in documents:
+    print(doc)
+
+- This finds specific record within the database.
+
+coll.remove({'first': 'douglas'})
+
+- This removes a specific record in the database.
+
+coll.update_one({'nationality': 'american'},
+                {'$set': {'hair_colour': 'maroon'}})
+            
+- This will change the first person in the database under the search "american" to have maroon hair colour.
+
+coll.update_many({'nationality': 'american'},
+                {'$set': {'hair_colour': 'maroon'}})
+
+- This will change all of the records that come under the "american" search to have maroon hair colour.
